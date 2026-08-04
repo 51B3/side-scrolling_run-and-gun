@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://ddowupgsa0qej"]
+
+[ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="1_1vlb3"]
+[ext_resource type="Shader" uid="uid://bv6aunyxhjh01" path="res://shaders/modulate_flash.gdshader" id="1_xepks"]
+[ext_resource type="Script" uid="uid://dhc1uvvrf0sfd" path="res://scripts/zombie.gd" id="2_4gx57"]
+[ext_resource type="Script" uid="uid://5e8e2lauipnk" path="res://scripts/components/health_component.gd" id="3_xepks"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4gx57"]
+resource_local_to_scene = true
+shader = ExtResource("1_xepks")
+shader_parameter/is_white = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gx57"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycv6i"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(144, 144)
+
+[node name="zombie" type="CharacterBody2D" unique_id=971574587 groups=["zombie"]]
+material = SubResource("ShaderMaterial_4gx57")
+script = ExtResource("2_4gx57")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=193614494]
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=419390045]
+use_parent_material = true
+texture = ExtResource("1_1vlb3")
+
+[node name="health" type="Control" parent="." unique_id=1097038366]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="health" unique_id=476817222]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -96.0
+offset_right = 64.0
+offset_bottom = -80.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4gx57")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ycv6i")
+show_percentage = false
+
+[node name="Label" type="Label" parent="health" unique_id=1308070135]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="attack_area" type="Area2D" parent="." unique_id=1778818330]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area" unique_id=892287525]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="health_component" type="Node" parent="." unique_id=551584923]
+unique_name_in_owner = true
+script = ExtResource("3_xepks")
+
+[connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]

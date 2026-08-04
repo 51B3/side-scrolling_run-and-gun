@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dwnh4ewxjwc5u"]
+
+[ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="1_3vyb7"]
+[ext_resource type="Shader" uid="uid://bv6aunyxhjh01" path="res://shaders/modulate_flash.gdshader" id="1_dqkch"]
+[ext_resource type="Script" uid="uid://cyqm6jasxc05q" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://5e8e2lauipnk" path="res://scripts/components/health_component.gd" id="3_qhqgy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qlg0r"]
+shader = ExtResource("1_dqkch")
+shader_parameter/is_white = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(128, 128)
+
+[node name="player" type="CharacterBody2D" unique_id=1413308504 groups=["player"]]
+material = SubResource("ShaderMaterial_qlg0r")
+script = ExtResource("1_g2els")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1015943802]
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=190862641]
+use_parent_material = true
+texture = ExtResource("1_3vyb7")
+
+[node name="interaction_area" type="Area2D" parent="." unique_id=1652414349]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area" unique_id=602925489]
+shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="health_component" type="Node" parent="." unique_id=897158330]
+unique_name_in_owner = true
+script = ExtResource("3_qhqgy")
+
+[connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]

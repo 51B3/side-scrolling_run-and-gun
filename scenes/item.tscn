@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b01rh5ec5o4yi"]
+
+[ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="1_4gq7n"]
+[ext_resource type="Script" uid="uid://ddmbhbu4veks6" path="res://scripts/item.gd" id="1_s8enn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7wbm"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gq7n"]
+size = Vector2(128, 128)
+
+[node name="item" type="RigidBody2D" unique_id=499461930]
+script = ExtResource("1_s8enn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=776989346]
+shape = SubResource("RectangleShape2D_m7wbm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1558015316]
+texture = ExtResource("1_4gq7n")
+
+[node name="hint" type="Label" parent="." unique_id=70170127]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="interaction_area" type="Area2D" parent="." unique_id=1908080721]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area" unique_id=994942864]
+shape = SubResource("RectangleShape2D_4gq7n")
+
+[connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]

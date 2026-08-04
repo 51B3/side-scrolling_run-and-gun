@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cqvknxfn6l5rk"]
+
+[ext_resource type="Script" uid="uid://b7eqexbwhdka3" path="res://scripts/NPC.gd" id="1_6xvi5"]
+[ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="1_mhefn"]
+[ext_resource type="Script" uid="uid://5e8e2lauipnk" path="res://scripts/components/health_component.gd" id="3_ktgr7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(128, 128)
+
+[node name="NPC" type="CharacterBody2D" unique_id=737896125]
+script = ExtResource("1_6xvi5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=770134112]
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1234813215]
+texture = ExtResource("1_mhefn")
+
+[node name="hint" type="Label" parent="." unique_id=1352084630]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="detection_area" type="Area2D" parent="." unique_id=1334220456]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area" unique_id=1681687780]
+shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="health_component" type="Node" parent="." unique_id=1926655575]
+unique_name_in_owner = true
+script = ExtResource("3_ktgr7")
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

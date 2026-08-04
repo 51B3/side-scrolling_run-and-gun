@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://h56r0lj4phay"]
+
+[ext_resource type="Script" uid="uid://cuwqntfyp6xrw" path="res://scripts/UI/manager.gd" id="1_71j4m"]
+[ext_resource type="PackedScene" uid="uid://k5886jilgfs0" path="res://scenes/UI/pause_menu.tscn" id="2_i7141"]
+[ext_resource type="PackedScene" uid="uid://dwnh4ewxjwc5u" path="res://scenes/player.tscn" id="2_qfnet"]
+[ext_resource type="Script" uid="uid://cba5878rs30am" path="res://scripts/UI/item_drop_area.gd" id="3_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://cmf656n6r47bw" path="res://scenes/ranged_weapon.tscn" id="3_i7141"]
+[ext_resource type="PackedScene" uid="uid://ddowupgsa0qej" path="res://scenes/zombie.tscn" id="4_4mrxx"]
+[ext_resource type="Shader" uid="uid://bv6aunyxhjh01" path="res://shaders/modulate_flash.gdshader" id="5_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://cqjmh0ij4imca" path="res://scenes/melee_weapon.tscn" id="6_4mrxx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mrxx"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r4gi"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7wbm"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3obaf"]
+bg_color = Color(1, 1, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mrxx"]
+resource_local_to_scene = true
+shader = ExtResource("5_7r4gi")
+shader_parameter/is_white = false
+
+[node name="world" type="Node2D" unique_id=778901110]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1742554811]
+process_mode = 3
+script = ExtResource("1_71j4m")
+
+[node name="header" type="Control" parent="CanvasLayer" unique_id=767993684]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/header" unique_id=81886516]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="progress" type="Control" parent="CanvasLayer/header/VBoxContainer" unique_id=1648299664]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/header/VBoxContainer/progress" unique_id=1956783868]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 27.0
+grow_horizontal = 2
+
+[node name="health" type="Control" parent="CanvasLayer/header/VBoxContainer" unique_id=601657294]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/header/VBoxContainer/health" unique_id=1263271441]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4mrxx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7r4gi")
+value = 100.0
+show_percentage = false
+
+[node name="ammo" type="Control" parent="CanvasLayer/header/VBoxContainer" unique_id=1701290714]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/header/VBoxContainer/ammo" unique_id=620507521]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 27.0
+theme_override_constants/separation = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/header/VBoxContainer/ammo/HBoxContainer" unique_id=318832150]
+custom_minimum_size = Vector2(390, 27)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_m7wbm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3obaf")
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/header/VBoxContainer/ammo/HBoxContainer" unique_id=585929715]
+custom_minimum_size = Vector2(90, 27)
+layout_mode = 2
+text = "0/0"
+vertical_alignment = 1
+
+[node name="pause_menu" parent="CanvasLayer" unique_id=523649547 instance=ExtResource("2_i7141")]
+visible = false
+
+[node name="item_drop_area" type="Control" parent="CanvasLayer" unique_id=1669606870]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_4mrxx")
+
+[node name="player" parent="." unique_id=1413308504 instance=ExtResource("2_qfnet")]
+
+[node name="ranged_weapon" parent="player" unique_id=409384861 instance=ExtResource("3_i7141")]
+rotation = 0.048615675
+magazine_size = 30
+muzzle_position = Vector2(64, 0)
+
+[node name="melee_weapon" parent="player" unique_id=1143297907 instance=ExtResource("6_4mrxx")]
+visible = false
+
+[node name="zombie" parent="." unique_id=971574587 instance=ExtResource("4_4mrxx")]
+material = SubResource("ShaderMaterial_4mrxx")
+position = Vector2(948, 421)

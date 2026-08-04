@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c0p7dh4uhmoue"]
+
+[ext_resource type="Script" uid="uid://dlljjjbkqbpwc" path="res://scripts/UI/slot.gd" id="1_516po"]
+
+[node name="slot" type="Panel" unique_id=194868915]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_516po")
+
+[node name="icon" type="TextureRect" parent="." unique_id=717353312]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

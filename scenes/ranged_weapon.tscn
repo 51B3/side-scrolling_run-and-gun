@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cmf656n6r47bw"]
+
+[ext_resource type="Script" uid="uid://b32telaujcnnp" path="res://scripts/ranged_weapon.gd" id="1_luxwp"]
+[ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="1_ru8fd"]
+
+[node name="ranged_weapon" type="Node2D" unique_id=409384861]
+script = ExtResource("1_luxwp")
+bullet_velocity = 10000.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=688166872]
+texture = ExtResource("1_ru8fd")
+
+[node name="muzzle" type="Node2D" parent="." unique_id=1945805601]

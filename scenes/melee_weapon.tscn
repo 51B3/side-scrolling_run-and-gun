@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cqjmh0ij4imca"]
+
+[ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="1_gt6vw"]
+[ext_resource type="Script" uid="uid://bg5hl83ggxcog" path="res://scripts/melee_weapon.gd" id="1_nqxus"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gt6vw"]
+size = Vector2(128, 128)
+
+[node name="melee_weapon" type="Node2D" unique_id=1143297907]
+script = ExtResource("1_nqxus")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=33164411]
+texture = ExtResource("1_gt6vw")
+
+[node name="attack_area" type="Area2D" parent="." unique_id=341789480]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area" unique_id=100067160]
+shape = SubResource("RectangleShape2D_gt6vw")
