@@ -1,6 +1,8 @@
 extends Node2D
 
 
+@export var bullet_data: BulletData
+
 var velocity: float
 
 

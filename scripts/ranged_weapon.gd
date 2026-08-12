@@ -4,6 +4,7 @@ class_name RangedWeapon
 
 signal ammo_changed(current: int, max: int)
 
+@export var ranged_weapon_data: RangedWeaponData # 
 @export var magazine_size:   int
 @export var muzzle_position: Vector2
 @export var bullet_velocity: float = 10000.0
@@ -11,7 +12,7 @@ signal ammo_changed(current: int, max: int)
 # @export var ammo_type:       String
 # @export var damage:          float
 
-var bullet_scene := preload("res://scenes/bullet.tscn") # resource
+var bullet_scene := preload("res://scenes/bullet.tscn") # Ресурс
 var is_reloading: bool = false
 var ammo: int = 0:
 	set(value):

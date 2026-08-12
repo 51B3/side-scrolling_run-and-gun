@@ -2,6 +2,19 @@ extends Resource
 class_name BulletData
 
 
-# @export var texture:  Texture2D
-# @export var damage:   float
-# @export var velocity: float
+"""
+enum DamageType {
+	
+}
+
+@export var damage_type:      DamageType
+"""
+@export var damage:           float = 10.0
+@export var velocity:         float = 10000.0
+"""
+@export var explosion_radius: float = 0.0 # 
+@export var explosion_damage: float = 0.0 # 
+@export var trail:            PackedScene
+@export var hit_particles:    PackedScene
+@export var hit_sound:        AudioStream
+"""

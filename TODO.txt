@@ -1,2 +1,8 @@
 Отслеживать любые изменения связанные с огнестрельным оружием
 В соответствующих слотах
+
+1. ranged_weapon_data.gd
+2. bullet.gd
+3. ranged_weapon.gd
+4. item.gd
+5. resources/
