@@ -28,8 +28,8 @@ enum FireMode {
 # 
 @export var recoil_force:          float = 0.0 # 
 @export var screen_shake:          float = 0.2 # 
-@export var shoot_sound:           AudioStream # fire_sound
-@export var shoot_particles:       PackedScene # fire_particles
+"""
+@export var shoot_sound:           AudioStream
+@export var shoot_particles:       PackedScene
 @export var reload_sound:          AudioStream
 @export var empty_chambered_sound: AudioStream
-"""

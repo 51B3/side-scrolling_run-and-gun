@@ -4,32 +4,21 @@ class_name RangedWeapon
 
 signal ammo_changed(current: int, max: int)
 
-@export var ranged_weapon_data: RangedWeaponData # 
-@export var magazine_size:   int
-@export var muzzle_position: Vector2
-@export var reload_time:     float
+@export var data: RangedWeaponData
 
-var bullet_scene := preload("res://scenes/bullet.tscn") # Ресурс
+var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
 var is_reloading: bool = false
-var ammo: int = 0:
+var can_shoot:    bool = true
+var ammo: int = 0: # Переименовать
 	set(value):
 		ammo = value
-		ammo_changed.emit(ammo, magazine_size)
+		
+		ammo_changed.emit(ammo, data.magazine_size)
 
 
 func _ready() -> void:
-	$muzzle.position = muzzle_position
-	ammo = magazine_size
-
-
-func _process(delta: float) -> void:
-	pass
-	
-	# Проверка, заряжено* ли оружие
-	# Проверка, есть ли ammo
-	# Проверка, подходит ли калибр ammo
-	# Проверка, не в процессе ли перезарядки оружие
-	# Проверка, как* стреляет оружие
+	$muzzle.position = data.muzzle_position
+	ammo = data.magazine_size
 
 
 func _physics_process(_delta: float) -> void:
@@ -43,22 +32,39 @@ func _physics_process(_delta: float) -> void:
 		scale.y = 1
 	
 	if Input.is_action_just_pressed("shoot"):
-		shoot()
+		shoot() # SINGLE/BURST/AUTO
 	
 	if Input.is_action_just_pressed("reload"):
 		reload()
 
 
 func shoot() -> void:
-	if is_reloading:
+	if is_reloading or not can_shoot:
 		return
 	
 	if ammo <= 0:
-		return # Click sound
+		if data.empty_chambered_sound:
+			var audio_stream_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+			
+			get_tree().current_scene.add_child(audio_stream_player)
+			
+			audio_stream_player.stream = data.empty_chambered_sound
+			audio_stream_player.global_position = global_position
+			
+			audio_stream_player.finished.connect(audio_stream_player.queue_free)
+			audio_stream_player.play()
+		
+		return
 	
 	ammo -= 1
 	
 	var bullet_instance = bullet_scene.instantiate()
+	
+	"""
+	"""
+	bullet_instance.data = data.ammo_data.bullet_data
+	"""
+	"""
 	
 	get_tree().current_scene.add_child(bullet_instance)
 	
@@ -67,29 +73,12 @@ func shoot() -> void:
 
 
 func reload() -> void:
-	if is_reloading:
+	if is_reloading or ammo == data.magazine_size:
 		return
-	
-	if ammo == magazine_size:
-		return
-	
-	"""
-	var reserve = player.reserve_ammo[ammo_type]
-	
-	if reserve <= 0:
-		return
-	"""
 	
 	is_reloading = true
 	
-	"""
-	var need = magazine_size - ammo
-	var take = min(need, reserve)
+	await get_tree().create_timer(data.reload_time).timeout
 	
-	ammo += take
-	player.reserve_ammo[ammo_type] -= take
-	"""
-	
-	await get_tree().create_timer(reload_time).timeout # reload_time
-	
+	ammo = data.magazine_size # data.ammo_data.amount
 	is_reloading = false

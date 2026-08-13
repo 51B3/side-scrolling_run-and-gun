@@ -4,12 +4,12 @@ class_name Item
 
 @onready var sprite: Sprite2D = $Sprite2D
 
-@export var item_data: ItemData:
+@export var data: ItemData:
 	set(value):
-		if item_data == value:
+		if data == value:
 			return
 		
-		item_data = value
+		data = value
 		
 		if is_node_ready():
 			_draw()
@@ -20,7 +20,7 @@ var is_equipped := false
 
 
 func _ready() -> void:
-	if item_data == null:
+	if data == null:
 		queue_free()
 		
 		return
@@ -29,7 +29,7 @@ func _ready() -> void:
 
 
 func _draw() -> void: # Переименовать
-	sprite.texture = item_data.texture
+	sprite.texture = data.texture
 
 
 """

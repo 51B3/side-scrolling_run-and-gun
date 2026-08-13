@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b32telaujcnnp" path="res://scripts/ranged_weapon.gd" id="1_luxwp"]
 [ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="1_ru8fd"]
+[ext_resource type="Resource" uid="uid://cjxdg58qjn51l" path="res://resources/items/weapons/ranged/test.tres" id="2_s7br6"]
 
 [node name="ranged_weapon" type="Node2D" unique_id=409384861]
 script = ExtResource("1_luxwp")
-bullet_velocity = 10000.0
+data = ExtResource("2_s7br6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=688166872]
 texture = ExtResource("1_ru8fd")

@@ -20,7 +20,7 @@ extends CanvasLayer
 func _ready() -> void: # setter
 	await get_tree().process_frame
 	
-	var weapon = player.get_node("ranged_weapon")
+	var ranged_weapon = player.get_node("ranged_weapon")
 	
 	"""
 	if not weapon:
@@ -28,10 +28,10 @@ func _ready() -> void: # setter
 		ammo_label.hide()
 	"""
 	
-	ammo_bar.max_value = weapon.magazine_size # 
-	ammo_bar.value = weapon.ammo # 
+	ammo_bar.max_value = ranged_weapon.data.magazine_size # 
+	ammo_bar.value = ranged_weapon.ammo # 
 	
-	weapon.ammo_changed.connect(_on_ammo_changed) # 
+	ranged_weapon.ammo_changed.connect(_on_ammo_changed) # 
 	
 	health_bar.max_value = health_component.max_health
 	health_bar.value = health_component.current_health

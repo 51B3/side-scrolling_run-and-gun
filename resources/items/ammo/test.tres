@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AmmoData" format=3 uid="uid://ewms7uyijuma"]
+
+[ext_resource type="Script" uid="uid://cwfean2g5x4v1" path="res://scripts/data/ammo.gd" id="1_n3b0j"]
+[ext_resource type="Resource" uid="uid://bwg3qc7n80am8" path="res://resources/items/bullets/test.tres" id="1_qof82"]
+[ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="3_nipfd"]
+
+[resource]
+script = ExtResource("1_n3b0j")
+bullet_caliber = &"0 mm"
+bullet_data = ExtResource("1_qof82")
+texture = ExtResource("3_nipfd")
+name = "test ammo"
+description = "description"
+metadata/_custom_type_script = "uid://cwfean2g5x4v1"

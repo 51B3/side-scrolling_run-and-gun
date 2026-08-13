@@ -17,5 +17,5 @@ enum DamageType {
 @export var explosion_damage: float = 0.0 # 
 @export var trail:            PackedScene
 """
-@export var hit_particles:    PackedScene
-@export var hit_sound:        AudioStream
+@export var hit_particles:    PackedScene #
+@export var hit_sound:        AudioStream # 

@@ -2,6 +2,9 @@ extends ItemData
 class_name AmmoData
 
 
+"""
+@export var amount:         int
+"""
 @export var bullet_caliber:  StringName
 @export var bullet_data:     BulletData
 """
