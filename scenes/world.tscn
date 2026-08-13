@@ -93,6 +93,9 @@ layout_mode = 2
 text = "0/0"
 vertical_alignment = 1
 
+[node name="hot_bar" type="Control" parent="CanvasLayer/header/VBoxContainer" unique_id=1487676429]
+layout_mode = 2
+
 [node name="pause_menu" parent="CanvasLayer" unique_id=523649547 instance=ExtResource("2_i7141")]
 visible = false
 
@@ -109,8 +112,6 @@ script = ExtResource("3_4mrxx")
 
 [node name="ranged_weapon" parent="player" unique_id=409384861 instance=ExtResource("3_i7141")]
 rotation = 0.048615675
-magazine_size = 30
-muzzle_position = Vector2(64, 0)
 
 [node name="melee_weapon" parent="player" unique_id=1143297907 instance=ExtResource("6_4mrxx")]
 visible = false
