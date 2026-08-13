@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1joil8sstw4m"
-path="res://.godot/imported/CameraRegionController2D.svg-dcf3c286aa2063b9f278e771c240316f.ctex"
+uid="uid://cmg1qe1fbb0pe"
+path="res://.godot/imported/CameraTransition.svg-901ce28b2beb46195376e7e225300a6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/camera_region/icons/CameraRegionController2D.svg"
-dest_files=["res://.godot/imported/CameraRegionController2D.svg-dcf3c286aa2063b9f278e771c240316f.ctex"]
+source_file="res://addons/cameraregion2d/icons/CameraTransition.svg"
+dest_files=["res://.godot/imported/CameraTransition.svg-901ce28b2beb46195376e7e225300a6e.ctex"]
 
 [params]
 

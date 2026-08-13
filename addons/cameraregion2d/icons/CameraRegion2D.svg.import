@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8b60vdpd35kw"
-path="res://.godot/imported/CameraRegion2D.svg-b9f8b520a6fbbe1d935bdb4f8ca80628.ctex"
+path="res://.godot/imported/CameraRegion2D.svg-9939a41a103c06ae12e759ddb0183a7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/camera_region/icons/CameraRegion2D.svg"
-dest_files=["res://.godot/imported/CameraRegion2D.svg-b9f8b520a6fbbe1d935bdb4f8ca80628.ctex"]
+source_file="res://addons/cameraregion2d/icons/CameraRegion2D.svg"
+dest_files=["res://.godot/imported/CameraRegion2D.svg-9939a41a103c06ae12e759ddb0183a7d.ctex"]
 
 [params]
 

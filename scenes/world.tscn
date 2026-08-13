@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ddowupgsa0qej" path="res://scenes/zombie.tscn" id="4_4mrxx"]
 [ext_resource type="Shader" uid="uid://bv6aunyxhjh01" path="res://shaders/modulate_flash.gdshader" id="5_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://cqjmh0ij4imca" path="res://scenes/melee_weapon.tscn" id="6_4mrxx"]
+[ext_resource type="Resource" uid="uid://60qnnbh4rtxi" path="res://resources/items/weapons/melee/test.tres" id="7_7r4gi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mrxx"]
 bg_color = Color(0, 0, 0, 1)
@@ -21,7 +22,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3obaf"]
 bg_color = Color(1, 1, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mrxx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7r4gi"]
 resource_local_to_scene = true
 shader = ExtResource("5_7r4gi")
 shader_parameter/is_white = false
@@ -115,7 +116,8 @@ rotation = 0.048615675
 
 [node name="melee_weapon" parent="player" unique_id=1143297907 instance=ExtResource("6_4mrxx")]
 visible = false
+data = ExtResource("7_7r4gi")
 
 [node name="zombie" parent="." unique_id=971574587 instance=ExtResource("4_4mrxx")]
-material = SubResource("ShaderMaterial_4mrxx")
+material = SubResource("ShaderMaterial_7r4gi")
 position = Vector2(948, 421)

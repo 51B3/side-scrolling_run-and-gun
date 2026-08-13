@@ -2,23 +2,30 @@ extends Node2D
 class_name RangedWeapon
 
 
-signal ammo_changed(current: int, max: int)
+signal ammo_changed(current: int, max: int) # , reserve: int
 
 @export var data: RangedWeaponData
 
 var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
 var is_reloading: bool = false
-var can_shoot:    bool = true
-var ammo: int = 0: # Переименовать
+var ammo:         int = 0: # Переименовать
 	set(value):
-		ammo = value
+		ammo = clampi(value, 0, data.magazine_size)
 		
 		ammo_changed.emit(ammo, data.magazine_size)
+"""
+var reserve_ammo: int = 0:
+	set(value):
+		reserve_ammo = maxi(value, 0)
+"""
 
 
 func _ready() -> void:
 	$muzzle.position = data.muzzle_position
 	ammo = data.magazine_size
+	"""
+	reserve_ammo = ammo
+	"""
 
 
 func _physics_process(_delta: float) -> void:
@@ -39,7 +46,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func shoot() -> void:
-	if is_reloading or not can_shoot:
+	if is_reloading:
 		return
 	
 	if ammo <= 0:
@@ -53,6 +60,11 @@ func shoot() -> void:
 			
 			audio_stream_player.finished.connect(audio_stream_player.queue_free)
 			audio_stream_player.play()
+		
+		"""
+		if reserve_ammo > 0:
+			reload()
+		"""
 		
 		return
 	
@@ -73,12 +85,25 @@ func shoot() -> void:
 
 
 func reload() -> void:
-	if is_reloading or ammo == data.magazine_size:
+	if is_reloading or ammo >= data.magazine_size:
 		return
+	
+	"""
+	if reserve_ammo <= 0:
+		return
+	"""
 	
 	is_reloading = true
 	
 	await get_tree().create_timer(data.reload_time).timeout
 	
-	ammo = data.magazine_size # data.ammo_data.amount
+	"""
+	var needed_ammo: int = data.magazine_size - ammo
+	var ammo_to_reload: int = mini(needed_ammo, reserve_ammo)
+	
+	ammo += ammo_to_reload
+	reserve_ammo -= ammo_to_reload
+	"""
+	
+	ammo = data.magazine_size
 	is_reloading = false

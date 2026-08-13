@@ -17,21 +17,19 @@ extends CanvasLayer
 )
 
 
-func _ready() -> void: # setter
+func _ready() -> void:
 	await get_tree().process_frame
 	
 	var ranged_weapon = player.get_node("ranged_weapon")
 	
-	"""
-	if not weapon:
+	if not ranged_weapon.visible: # 
 		ammo_bar.hide()
 		ammo_label.hide()
-	"""
 	
 	ammo_bar.max_value = ranged_weapon.data.magazine_size # 
 	ammo_bar.value = ranged_weapon.ammo # 
 	
-	ranged_weapon.ammo_changed.connect(_on_ammo_changed) # 
+	ranged_weapon.ammo_changed.connect(_on_ammo_changed)
 	
 	health_bar.max_value = health_component.max_health
 	health_bar.value = health_component.current_health
@@ -57,6 +55,18 @@ func _on_ammo_changed(current: int, _max: int) -> void: # player
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		handle_ui_cancel()
+	
+	if Input.is_action_just_pressed("two-handed_ranged_weapon"):
+		pass # player.ranged_weapon.data = two-handed_ranged_weapon
+			 # player.melee_weapon.hide()
+	
+	if Input.is_action_just_pressed("one-handed_ranged_weapon"):
+		pass # player.ranged_weapon.data = one-handed_ranged_weapon
+			 # player.melee_weapon.hide()
+		
+	if Input.is_action_just_pressed("melee_weapon"):
+		pass # player.melee_weapon.show()
+			 # player.ranged_weapon.hide()
 
 
 func handle_ui_cancel() -> void:
