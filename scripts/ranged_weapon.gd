@@ -22,6 +22,16 @@ func _ready() -> void:
 	ammo = magazine_size
 
 
+func _process(delta: float) -> void:
+	pass
+	
+	# Проверка, заряжено* ли оружие
+	# Проверка, есть ли ammo
+	# Проверка, подходит ли калибр ammo
+	# Проверка, не в процессе ли перезарядки оружие
+	# Проверка, как* стреляет оружие
+
+
 func _physics_process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
 	

@@ -14,7 +14,9 @@ class_name Item
 		if is_node_ready():
 			_draw()
 
+"""
 var is_equipped := false
+"""
 
 
 func _ready() -> void:
@@ -30,23 +32,27 @@ func _draw() -> void: # Переименовать
 	sprite.texture = item_data.texture
 
 
-func set_equipped(state: bool) -> void:
+"""
+func set_equipped(state: bool) -> void: # 
 	is_equipped = state
 	
 	$interaction_area.monitoring = not state
 	$interaction_area.monitorable = not state
 	
 	freeze = state
+"""
 
 
 func _on_interaction_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("player"):
 		return
 	
+	"""
 	if is_equipped:
 		$hint.hide()
 		
 		return
+	"""
 	
 	$hint.show()
 

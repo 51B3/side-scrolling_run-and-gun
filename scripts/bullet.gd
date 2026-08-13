@@ -14,6 +14,17 @@ extends Node2D
 		"""
 
 
+func _ready() -> void:
+	if bullet_data == null:
+		queue_free()
+		
+		return
+	
+	"""
+	_draw()
+	"""
+
+
 func _physics_process(delta: float) -> void:
 	position += transform.x * bullet_data.velocity * delta
 

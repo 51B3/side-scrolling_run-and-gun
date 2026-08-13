@@ -10,13 +10,14 @@ enum FireMode {
 }
 
 @export var fire_mode:             FireMode = FireMode.SINGLE
+@export var bullet_override:       BulletData
 """
 @export var ammo_data:             AmmoData
-@export var bullet_override:       BulletData
 @export var magazine_size:         int = 30
 @export var reload_time:           float = 1.0
 @export var velocity_multiplier:   float = 1.0
 @export var damage_multiplier:     float = 1.0
+@export var muzzle_position:       Vector2 = Vector2(0.0, 0.0)
 # Скорострельность
 """
 @export var projectile_count:      int = 1 # 
