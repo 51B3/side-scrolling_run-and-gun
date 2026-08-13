@@ -24,6 +24,10 @@ Global="*uid://r5o5bvshwe40"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/camera_region/plugin.cfg", "res://addons/cameraregion2d/plugin.cfg")
+
 [input]
 
 move_left={

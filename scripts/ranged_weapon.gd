@@ -7,10 +7,7 @@ signal ammo_changed(current: int, max: int)
 @export var ranged_weapon_data: RangedWeaponData # 
 @export var magazine_size:   int
 @export var muzzle_position: Vector2
-@export var bullet_velocity: float = 10000.0
 @export var reload_time:     float
-# @export var ammo_type:       String
-# @export var damage:          float
 
 var bullet_scene := preload("res://scenes/bullet.tscn") # Ресурс
 var is_reloading: bool = false
@@ -55,7 +52,6 @@ func shoot() -> void:
 	
 	get_tree().current_scene.add_child(bullet_instance)
 	
-	bullet_instance.velocity = bullet_velocity # resource
 	bullet_instance.global_position = $muzzle.global_position
 	bullet_instance.rotation = rotation
 
