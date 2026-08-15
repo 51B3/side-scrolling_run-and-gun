@@ -2,30 +2,22 @@ extends Node2D
 class_name RangedWeapon
 
 
-signal ammo_changed(current: int, max: int) # , reserve: int
+signal magazine_ammo_changed(magazine_ammo: int, magazine_size: int)
 
 @export var data: RangedWeaponData
 
-var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
-var is_reloading: bool = false
-var ammo:         int = 0: # Переименовать
-	set(value):
-		ammo = clampi(value, 0, data.magazine_size)
-		
-		ammo_changed.emit(ammo, data.magazine_size)
-"""
-var reserve_ammo: int = 0:
-	set(value):
-		reserve_ammo = maxi(value, 0)
-"""
+var bullet_scene:  PackedScene = preload("res://scenes/bullet.tscn")
+var is_reloading:  bool = false
+var magazine_ammo: int = 0
 
 
 func _ready() -> void:
 	$muzzle.position = data.muzzle_position
-	ammo = data.magazine_size
-	"""
-	reserve_ammo = ammo
-	"""
+	magazine_ammo = data.magazine_size
+	
+	await get_tree().process_frame
+	
+	magazine_ammo_changed.emit(magazine_ammo, data.magazine_size)
 
 
 func _physics_process(_delta: float) -> void:
@@ -49,7 +41,7 @@ func shoot() -> void:
 	if is_reloading:
 		return
 	
-	if ammo <= 0:
+	if magazine_ammo <= 0:
 		if data.empty_chambered_sound:
 			var audio_stream_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 			
@@ -61,22 +53,22 @@ func shoot() -> void:
 			audio_stream_player.finished.connect(audio_stream_player.queue_free)
 			audio_stream_player.play()
 		
-		"""
-		if reserve_ammo > 0:
+		if Global.get_amount(data.ammo_data) > 0:
 			reload()
-		"""
 		
 		return
 	
-	ammo -= 1
+	magazine_ammo -= 1
+	
+	magazine_ammo_changed.emit(magazine_ammo, data.magazine_size)
 	
 	var bullet_instance = bullet_scene.instantiate()
 	
-	"""
-	"""
-	bullet_instance.data = data.ammo_data.bullet_data
-	"""
-	"""
+	bullet_instance.data = (
+		data.
+		ammo_data.
+		bullet_data
+	)
 	
 	get_tree().current_scene.add_child(bullet_instance)
 	
@@ -85,25 +77,25 @@ func shoot() -> void:
 
 
 func reload() -> void:
-	if is_reloading or ammo >= data.magazine_size:
+	if is_reloading or magazine_ammo >= data.magazine_size:
 		return
 	
-	"""
-	if reserve_ammo <= 0:
+	if Global.get_amount(data.ammo_data) <= 0:
 		return
-	"""
 	
 	is_reloading = true
 	
 	await get_tree().create_timer(data.reload_time).timeout
 	
-	"""
-	var needed_ammo: int = data.magazine_size - ammo
-	var ammo_to_reload: int = mini(needed_ammo, reserve_ammo)
+	var reload_ammo: int = mini(
+		data.magazine_size - magazine_ammo,
+		Global.get_amount(data.ammo_data)
+	)
 	
-	ammo += ammo_to_reload
-	reserve_ammo -= ammo_to_reload
-	"""
+	magazine_ammo += reload_ammo
 	
-	ammo = data.magazine_size
+	Global.remove(data.ammo_data, reload_ammo)
+	
 	is_reloading = false
+	
+	magazine_ammo_changed.emit(magazine_ammo, data.magazine_size)

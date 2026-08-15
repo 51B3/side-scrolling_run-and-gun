@@ -7,14 +7,11 @@ extends CanvasLayer
 	.current_scene
 	.get_node("player")
 )
+# Перенести в player.gd
 @onready var ammo_bar:         ProgressBar = $header/VBoxContainer/ammo/HBoxContainer/ProgressBar
 @onready var ammo_label:       Label = $header/VBoxContainer/ammo/HBoxContainer/Label
 @onready var health_bar:       ProgressBar = $header/VBoxContainer/health/ProgressBar
-@onready var health_component: Node = ( # player
-	get_tree()
-	.current_scene
-	.get_node("player/health_component")
-)
+@onready var health_component: Node = player.get_node("health_component")
 
 
 func _ready() -> void:
@@ -22,14 +19,14 @@ func _ready() -> void:
 	
 	var ranged_weapon = player.get_node("ranged_weapon")
 	
-	if not ranged_weapon.visible: # 
+	if not ranged_weapon.visible:
 		ammo_bar.hide()
 		ammo_label.hide()
 	
-	ammo_bar.max_value = ranged_weapon.data.magazine_size # 
-	ammo_bar.value = ranged_weapon.ammo # 
+	ammo_bar.max_value = ranged_weapon.data.magazine_size
+	ammo_bar.value = ranged_weapon.magazine_ammo
 	
-	ranged_weapon.ammo_changed.connect(_on_ammo_changed)
+	ranged_weapon.magazine_ammo_changed.connect(_on_magazine_ammo_changed)
 	
 	health_bar.max_value = health_component.max_health
 	health_bar.value = health_component.current_health
@@ -38,7 +35,7 @@ func _ready() -> void:
 	health_component.healed.connect(_on_health_changed)
 
 
-func _on_health_changed(_amount: float) -> void: # player
+func _on_health_changed(_amount: float) -> void:
 	health_bar.value = health_component.current_health
 
 
@@ -46,10 +43,10 @@ func _on_weapon_changed() -> void: #
 	pass 
 
 
-func _on_ammo_changed(current: int, _max: int) -> void: # player
-	ammo_bar.max_value = _max
-	ammo_bar.value = current
-	ammo_label.text = "%d/%d" % [current, _max]
+func _on_magazine_ammo_changed(magazine_ammo: int, magazine_size: int) -> void:
+	ammo_bar.max_value = magazine_size
+	ammo_bar.value = magazine_ammo
+	ammo_label.text = "%d/%d" % [magazine_ammo, magazine_size]
 
 
 func _process(_delta: float) -> void:

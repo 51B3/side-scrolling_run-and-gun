@@ -25,11 +25,10 @@ enum FireMode {
 @export var min_spread:            float = 0.0
 @export var max_spread:            float = 5.0
 @export var spread_recovery:       float = 8.0
-# 
 @export var recoil_force:          float = 0.0 # 
 @export var screen_shake:          float = 0.2 # 
 """
 @export var shoot_sound:           AudioStream
+@export var empty_chambered_sound: AudioStream
 @export var shoot_particles:       PackedScene
 @export var reload_sound:          AudioStream
-@export var empty_chambered_sound: AudioStream

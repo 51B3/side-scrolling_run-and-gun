@@ -8,4 +8,3 @@ class_name ItemData
 @export var texture:     Texture
 @export var name:        String
 @export var description: String = ""
-@export var max_stack:   int = 1

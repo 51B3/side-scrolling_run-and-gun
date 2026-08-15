@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var speed: float = 128.0
 
-var direction: Vector2 = Vector2.ZERO
+var direction:       Vector2 = Vector2.ZERO
 var target_velocity: Vector2 = Vector2.ZERO
 
 

@@ -2,8 +2,12 @@ extends CharacterBody2D
 class_name Zombie
 
 
-@onready var player: CharacterBody2D = get_tree().current_scene.get_node("player")
-@onready var health_bar: ProgressBar = $health/ProgressBar
+@onready var player:           CharacterBody2D = (
+	get_tree()
+	.current_scene
+	.get_node("player")
+)
+@onready var health_bar:       ProgressBar = $health/ProgressBar
 @onready var health_component: Node = $health_component
 
 @export var speed:           float = 128.0

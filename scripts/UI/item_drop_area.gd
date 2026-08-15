@@ -5,7 +5,7 @@ signal item_dropped(item_data)
 
 @onready var player: CharacterBody2D = get_tree().current_scene.get_node("player")
 
-const ITEM_SCENE := preload("res://scenes/item.tscn")
+const ITEM_SCENE: PackedScene = preload("res://scenes/item.tscn")
 
 
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
