@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="1_1vlb3"]
 [ext_resource type="Shader" uid="uid://bv6aunyxhjh01" path="res://shaders/modulate_flash.gdshader" id="1_xepks"]
-[ext_resource type="Script" uid="uid://dhc1uvvrf0sfd" path="res://scripts/zombie.gd" id="2_4gx57"]
+[ext_resource type="Script" uid="uid://dhc1uvvrf0sfd" path="res://scripts/enemy.gd" id="2_5uy6h"]
 [ext_resource type="Script" uid="uid://5e8e2lauipnk" path="res://scripts/components/health_component.gd" id="3_xepks"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4gx57"]
@@ -22,9 +22,9 @@ bg_color = Color(1, 0, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(144, 144)
 
-[node name="zombie" type="CharacterBody2D" unique_id=971574587 groups=["zombie"]]
+[node name="enemy" type="CharacterBody2D" unique_id=971574587 groups=["zombie"]]
 material = SubResource("ShaderMaterial_4gx57")
-script = ExtResource("2_4gx57")
+script = ExtResource("2_5uy6h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=193614494]
 shape = SubResource("RectangleShape2D_g2els")

@@ -10,9 +10,20 @@ class_name Zombie
 @onready var health_bar:       ProgressBar = $health/ProgressBar
 @onready var health_component: Node = $health_component
 
+@export var data: EnemyData:
+	set(value):
+		if data == value:
+			return
+		
+		data = value
+		
+		"""
+		if is_node_ready():
+			_draw()
+		"""
 @export var speed:           float = 128.0
 @export var attack_damage:   float = 10.0
-@export var attack_interval: float = 1.0
+@export var attack_cooldown: float = 1.0
 
 var attack_timer: float = 0.0
 var is_attacking: bool = false
@@ -43,7 +54,7 @@ func _physics_process(delta: float) -> void:
 		if attack_timer <= 0.0:
 			player.get_node("health_component").damage(attack_damage)
 			
-			attack_timer = attack_interval
+			attack_timer = attack_cooldown
 
 
 func _on_health_changed(_amount: float) -> void:
@@ -55,7 +66,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 		body.get_node("health_component").damage(attack_damage)
 		
 		is_attacking = true
-		attack_timer = attack_interval
+		attack_timer = attack_cooldown
 
 
 func _on_attack_area_body_exited(body: Node2D) -> void:

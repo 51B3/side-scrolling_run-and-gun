@@ -4,7 +4,17 @@ class_name RangedWeapon
 
 signal magazine_ammo_changed(magazine_ammo: int, magazine_size: int)
 
-@export var data: RangedWeaponData
+@export var data: RangedWeaponData:
+	set(value):
+			if data == value:
+				return
+			
+			data = value
+			
+			"""
+			if is_node_ready():
+				_draw()
+			"""
 
 var bullet_scene:  PackedScene = preload("res://scenes/bullet.tscn")
 var is_reloading:  bool = false
@@ -62,6 +72,25 @@ func shoot() -> void:
 	
 	magazine_ammo_changed.emit(magazine_ammo, data.magazine_size)
 	
+	if data.shoot_sound:
+		var audio_stream_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		
+		get_tree().current_scene.add_child(audio_stream_player)
+		
+		audio_stream_player.stream = data.shoot_sound
+		audio_stream_player.global_position = global_position
+		
+		audio_stream_player.finished.connect(audio_stream_player.queue_free)
+		audio_stream_player.play()
+	
+	if data.shoot_particles:
+		var particles = data.shoot_particles.instantiate()
+		
+		get_tree().current_scene.add_child(particles)
+		
+		particles.global_position = global_position
+		particles.rotation = rotation
+	
 	var bullet_instance = bullet_scene.instantiate()
 	
 	bullet_instance.data = (
@@ -74,6 +103,29 @@ func shoot() -> void:
 	
 	bullet_instance.global_position = $muzzle.global_position
 	bullet_instance.rotation = rotation
+	
+	if data.ammo_data.casing_particle:
+		var particles = data.ammo_data.casing_particle.instantiate()
+		
+		get_tree().current_scene.add_child(particles)
+		
+		particles.global_position = global_position
+		particles.rotation = rotation
+	
+	"""
+	await get_tree().create_timer(1.0).timeout
+	"""
+	
+	if data.ammo_data.casing_sound:
+		var audio_stream_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		
+		get_tree().current_scene.add_child(audio_stream_player)
+		
+		audio_stream_player.stream = data.ammo_data.casing_sound
+		audio_stream_player.global_position = global_position
+		
+		audio_stream_player.finished.connect(audio_stream_player.queue_free)
+		audio_stream_player.play()
 
 
 func reload() -> void:
@@ -85,16 +137,27 @@ func reload() -> void:
 	
 	is_reloading = true
 	
+	if data.reload_sound:
+		var audio_stream_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		
+		get_tree().current_scene.add_child(audio_stream_player)
+		
+		audio_stream_player.stream = data.reload_sound
+		audio_stream_player.global_position = global_position
+		
+		audio_stream_player.finished.connect(audio_stream_player.queue_free)
+		audio_stream_player.play()
+	
 	await get_tree().create_timer(data.reload_time).timeout
 	
-	var reload_ammo: int = mini(
+	var ammo_delta: int = mini(
 		data.magazine_size - magazine_ammo,
 		Global.get_amount(data.ammo_data)
 	)
 	
-	magazine_ammo += reload_ammo
+	magazine_ammo += ammo_delta
 	
-	Global.remove(data.ammo_data, reload_ammo)
+	Global.remove(data.ammo_data, ammo_delta)
 	
 	is_reloading = false
 	

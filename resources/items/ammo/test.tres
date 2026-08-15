@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_n3b0j")
-bullet_caliber = &"0 mm"
+caliber = &"9 mm"
 bullet_data = ExtResource("1_qof82")
 texture = ExtResource("3_nipfd")
 name = "test ammo"

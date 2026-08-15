@@ -2,7 +2,17 @@ extends Node2D
 class_name MeleeWeapon
 
 
-@export var data: MeleeWeaponData
+@export var data: MeleeWeaponData:
+	set(value):
+		if data == value:
+			return
+		
+		data = value
+		
+		"""
+		if is_node_ready():
+			_draw()
+		"""
 
 
 func _ready() -> void:

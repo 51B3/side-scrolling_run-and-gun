@@ -19,9 +19,9 @@ shape = SubResource("RectangleShape2D_m7wbm")
 texture = ExtResource("1_4gq7n")
 
 [node name="hint" type="Label" parent="." unique_id=70170127]
-visible = false
-offset_right = 40.0
+offset_right = 9.0
 offset_bottom = 23.0
+text = "E"
 
 [node name="interaction_area" type="Area2D" parent="." unique_id=1908080721]
 

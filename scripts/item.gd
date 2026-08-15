@@ -13,8 +13,7 @@ class_name Item
 		
 		if is_node_ready():
 			_draw()
-@export var amount: int = 1
-
+@export var stack: int = 1 # 
 
 func _ready() -> void:
 	if data == null:
