@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 var direction:         Vector2 = Vector2.ZERO
-var walk_speed:        float = 128.0
+var walk_speed:        float = 108.0
 var sprint_speed:      float = 192.0
 var target_velocity:   Vector2 = Vector2.ZERO
 var can_interact_with: Dictionary[String, Array] = {

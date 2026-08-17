@@ -1,9 +1,10 @@
-extends RigidBody2D
+extends Node2D
 class_name Item
 
 
 @onready var sprite: Sprite2D = $Sprite2D
 
+@export var stack:  int = 1 # 
 @export var data:   ItemData:
 	set(value):
 		if data == value:
@@ -12,8 +13,7 @@ class_name Item
 		data = value
 		
 		if is_node_ready():
-			_draw()
-@export var stack: int = 1 # 
+			update_visuals()
 
 func _ready() -> void:
 	if data == null:
@@ -21,10 +21,10 @@ func _ready() -> void:
 		
 		return
 	
-	_draw()
+	update_visuals()
 
 
-func _draw() -> void: # Переименовать
+func update_visuals() -> void: # Переименовать
 	sprite.texture = data.texture
 
 
