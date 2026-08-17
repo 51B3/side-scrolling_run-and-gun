@@ -27,6 +27,11 @@ shape = SubResource("RectangleShape2D_g2els")
 use_parent_material = true
 texture = ExtResource("1_3vyb7")
 
+[node name="attack_area" type="Area2D" parent="." unique_id=687867421]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area" unique_id=1521330334]
+shape = SubResource("RectangleShape2D_qhqgy")
+
 [node name="interaction_area" type="Area2D" parent="." unique_id=1652414349]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area" unique_id=602925489]
@@ -40,5 +45,9 @@ script = ExtResource("3_qhqgy")
 unique_name_in_owner = true
 script = ExtResource("5_qlg0r")
 
+[connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
+[connection signal="area_entered" from="interaction_area" to="." method="_on_interaction_area_entered"]
+[connection signal="area_exited" from="interaction_area" to="." method="_on_interaction_area_exited"]
 [connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]

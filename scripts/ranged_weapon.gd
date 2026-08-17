@@ -110,7 +110,7 @@ func shoot() -> void:
 		get_tree().current_scene.add_child(particles)
 		
 		particles.global_position = global_position
-		particles.rotation = rotation
+		particles.rotation = rotation # -rotation
 	
 	"""
 	await get_tree().create_timer(1.0).timeout

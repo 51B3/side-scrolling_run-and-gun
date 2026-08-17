@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cuwqntfyp6xrw" path="res://scripts/UI/manager.gd" id="1_71j4m"]
 [ext_resource type="PackedScene" uid="uid://k5886jilgfs0" path="res://scenes/UI/pause_menu.tscn" id="2_i7141"]
+[ext_resource type="Script" uid="uid://cbyockrdpjd5f" path="res://scripts/UI/hot_bar.gd" id="2_q5onr"]
 [ext_resource type="PackedScene" uid="uid://dwnh4ewxjwc5u" path="res://scenes/player.tscn" id="2_qfnet"]
 [ext_resource type="Script" uid="uid://cba5878rs30am" path="res://scripts/UI/item_drop_area.gd" id="3_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://cmf656n6r47bw" path="res://scenes/ranged_weapon.tscn" id="3_i7141"]
@@ -24,7 +25,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3obaf"]
 bg_color = Color(1, 1, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e3hyu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhx03"]
 resource_local_to_scene = true
 shader = ExtResource("5_7r4gi")
 shader_parameter/is_white = false
@@ -98,6 +99,7 @@ vertical_alignment = 1
 
 [node name="hot_bar" type="Control" parent="CanvasLayer/header/VBoxContainer" unique_id=1487676429]
 layout_mode = 2
+script = ExtResource("2_q5onr")
 
 [node name="pause_menu" parent="CanvasLayer" unique_id=523649547 instance=ExtResource("2_i7141")]
 visible = false
@@ -120,10 +122,10 @@ rotation = 0.048615675
 visible = false
 data = ExtResource("7_7r4gi")
 
-[node name="item" parent="player" unique_id=499461930 instance=ExtResource("8_e3hyu")]
+[node name="enemy" parent="." unique_id=971574587 instance=ExtResource("4_4mrxx")]
+material = SubResource("ShaderMaterial_jhx03")
+position = Vector2(948, 421)
+
+[node name="item" parent="." unique_id=499461930 instance=ExtResource("8_e3hyu")]
 position = Vector2(487, 635)
 data = ExtResource("9_q5onr")
-
-[node name="zombie" parent="." unique_id=971574587 instance=ExtResource("4_4mrxx")]
-material = SubResource("ShaderMaterial_e3hyu")
-position = Vector2(948, 421)

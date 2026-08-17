@@ -3,17 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="1_4gq7n"]
 [ext_resource type="Script" uid="uid://ddmbhbu4veks6" path="res://scripts/item.gd" id="1_s8enn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7wbm"]
-size = Vector2(128, 128)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gq7n"]
 size = Vector2(128, 128)
 
-[node name="item" type="RigidBody2D" unique_id=499461930]
+[node name="item" type="Node2D" unique_id=844903351]
 script = ExtResource("1_s8enn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=776989346]
-shape = SubResource("RectangleShape2D_m7wbm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1558015316]
 texture = ExtResource("1_4gq7n")
