@@ -19,6 +19,7 @@ var can_attack:        Dictionary[String, Array] = {
 	"environment": []
 }
 
+
 func _physics_process(_delta: float) -> void:
 	direction = Vector2.ZERO
 	

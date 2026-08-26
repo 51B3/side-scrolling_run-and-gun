@@ -25,7 +25,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3obaf"]
 bg_color = Color(1, 1, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhx03"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5onr"]
 resource_local_to_scene = true
 shader = ExtResource("5_7r4gi")
 shader_parameter/is_white = false
@@ -115,15 +115,15 @@ script = ExtResource("3_4mrxx")
 
 [node name="player" parent="." unique_id=1413308504 instance=ExtResource("2_qfnet")]
 
-[node name="ranged_weapon" parent="player" unique_id=409384861 instance=ExtResource("3_i7141")]
-rotation = 0.048615675
+[node name="ranged_weapon" parent="player" unique_id=409384861 node_paths=PackedStringArray("player") instance=ExtResource("3_i7141")]
+player = NodePath("..")
 
 [node name="melee_weapon" parent="player" unique_id=1143297907 instance=ExtResource("6_4mrxx")]
 visible = false
 data = ExtResource("7_7r4gi")
 
 [node name="enemy" parent="." unique_id=971574587 instance=ExtResource("4_4mrxx")]
-material = SubResource("ShaderMaterial_jhx03")
+material = SubResource("ShaderMaterial_q5onr")
 position = Vector2(948, 421)
 
 [node name="item" parent="." unique_id=499461930 instance=ExtResource("8_e3hyu")]

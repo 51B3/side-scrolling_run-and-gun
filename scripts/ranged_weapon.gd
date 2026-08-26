@@ -4,6 +4,7 @@ class_name RangedWeapon
 
 signal magazine_ammo_changed(magazine_ammo: int, magazine_size: int)
 
+@export var player: CharacterBody2D
 @export var data: RangedWeaponData:
 	set(value):
 			if data == value:
@@ -23,7 +24,7 @@ var magazine_ammo: int = 0
 
 func _ready() -> void:
 	$muzzle.position = data.muzzle_position
-	magazine_ammo = data.magazine_size
+	magazine_ammo = data.magazine_size # Randomize
 	
 	await get_tree().process_frame
 	
@@ -31,6 +32,12 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if player.velocity.x < 0:
+		scale.x = -1
+	else:
+		scale.x = 1
+	
+	"""
 	look_at(get_global_mouse_position())
 	
 	rotation_degrees = wrap(rotation_degrees, 0, 360)
@@ -39,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 		scale.y = -1
 	else:
 		scale.y = 1
+	"""
 	
 	if Input.is_action_just_pressed("shoot"):
 		shoot() # SINGLE/BURST/AUTO
@@ -47,7 +55,7 @@ func _physics_process(_delta: float) -> void:
 		reload()
 
 
-func shoot() -> void:
+func shoot() -> void: # Проблема со scale.y
 	if is_reloading:
 		return
 	
@@ -89,7 +97,7 @@ func shoot() -> void:
 		get_tree().current_scene.add_child(particles)
 		
 		particles.global_position = global_position
-		particles.rotation = rotation
+		particles.rotation = 0 if scale.x > 0 else PI
 	
 	var bullet_instance = bullet_scene.instantiate()
 	
@@ -102,7 +110,7 @@ func shoot() -> void:
 	get_tree().current_scene.add_child(bullet_instance)
 	
 	bullet_instance.global_position = $muzzle.global_position
-	bullet_instance.rotation = rotation
+	bullet_instance.rotation = 0 if scale.x > 0 else PI
 	
 	if data.ammo_data.casing_particle:
 		var particles = data.ammo_data.casing_particle.instantiate()
@@ -110,11 +118,7 @@ func shoot() -> void:
 		get_tree().current_scene.add_child(particles)
 		
 		particles.global_position = global_position
-		particles.rotation = rotation # -rotation
-	
-	"""
-	await get_tree().create_timer(1.0).timeout
-	"""
+		particles.rotation = 0 if scale.x > 0 else PI
 	
 	if data.ammo_data.casing_sound:
 		var audio_stream_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
