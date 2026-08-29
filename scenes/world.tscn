@@ -12,6 +12,10 @@
 [ext_resource type="Resource" uid="uid://60qnnbh4rtxi" path="res://resources/items/weapons/melee/test.tres" id="7_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://b01rh5ec5o4yi" path="res://scenes/item.tscn" id="8_e3hyu"]
 [ext_resource type="Resource" uid="uid://ewms7uyijuma" path="res://resources/items/ammo/test.tres" id="9_q5onr"]
+[ext_resource type="Script" uid="uid://crsxmtt0aph7l" path="res://addons/cameraregion2d/CameraRegionController2D.gd" id="13_o8fc1"]
+[ext_resource type="Script" uid="uid://dk1pogc6qqpao" path="res://addons/cameraregion2d/CameraRegion2D.gd" id="14_xo05s"]
+[ext_resource type="Script" uid="uid://dth01u8tvhknh" path="res://addons/cameraregion2d/CameraTransition.gd" id="15_xo05s"]
+[ext_resource type="PackedScene" uid="uid://cqvknxfn6l5rk" path="res://scenes/NPC.tscn" id="16_dss4m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mrxx"]
 bg_color = Color(0, 0, 0, 1)
@@ -29,6 +33,26 @@ bg_color = Color(1, 1, 0, 1)
 resource_local_to_scene = true
 shader = ExtResource("5_7r4gi")
 shader_parameter/is_white = false
+
+[sub_resource type="Curve" id="Curve_xo05s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7t5mc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lakw3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_dss4m"]
+script = ExtResource("15_xo05s")
+position = SubResource("Curve_xo05s")
+zoom = SubResource("Curve_lakw3")
+rotation = SubResource("Curve_7t5mc")
+transition_time = 5.0
+metadata/_custom_type_script = "uid://dth01u8tvhknh"
 
 [node name="world" type="Node2D" unique_id=778901110]
 
@@ -114,6 +138,7 @@ grow_vertical = 2
 script = ExtResource("3_4mrxx")
 
 [node name="player" parent="." unique_id=1413308504 instance=ExtResource("2_qfnet")]
+position = Vector2(960, 540)
 
 [node name="ranged_weapon" parent="player" unique_id=409384861 node_paths=PackedStringArray("player") instance=ExtResource("3_i7141")]
 player = NodePath("..")
@@ -124,8 +149,37 @@ data = ExtResource("7_7r4gi")
 
 [node name="enemy" parent="." unique_id=971574587 instance=ExtResource("4_4mrxx")]
 material = SubResource("ShaderMaterial_q5onr")
-position = Vector2(948, 421)
+position = Vector2(1717, 421)
 
 [node name="item" parent="." unique_id=499461930 instance=ExtResource("8_e3hyu")]
-position = Vector2(487, 635)
+position = Vector2(471, 540)
 data = ExtResource("9_q5onr")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=518300450]
+position = Vector2(960, 540)
+
+[node name="CameraRegionController2D" type="Node2D" parent="." unique_id=132896381 node_paths=PackedStringArray("camera", "target_node")]
+position = Vector2(960, 540)
+script = ExtResource("13_o8fc1")
+camera = NodePath("../Camera2D")
+target_node = NodePath("../player")
+metadata/_custom_type_script = "uid://crsxmtt0aph7l"
+
+[node name="2D_camera_region_0" type="Node2D" parent="CameraRegionController2D" unique_id=2023823038]
+script = ExtResource("14_xo05s")
+size = Vector2(1920, 1080)
+transition = SubResource("Resource_dss4m")
+metadata/_custom_type_script = "uid://dk1pogc6qqpao"
+
+[node name="2D_camera_region_1" type="Node2D" parent="CameraRegionController2D" unique_id=1124066241]
+position = Vector2(1920, 0)
+script = ExtResource("14_xo05s")
+size = Vector2(1920, 1080)
+transition = SubResource("Resource_dss4m")
+metadata/_custom_type_script = "uid://dk1pogc6qqpao"
+
+[node name="NPC" parent="." unique_id=737896125 instance=ExtResource("16_dss4m")]
+position = Vector2(3840, 540)
+
+[node name="NPC2" parent="." unique_id=1424364271 instance=ExtResource("16_dss4m")]
+position = Vector2(1920, 540)

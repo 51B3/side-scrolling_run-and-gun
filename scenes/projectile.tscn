@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cp3y1unjes14m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7wbm"]
+
+[node name="projectile" type="Node2D" unique_id=281743511]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=474897059]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=867336618]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=915923526]
+shape = SubResource("CircleShape2D_m7wbm")

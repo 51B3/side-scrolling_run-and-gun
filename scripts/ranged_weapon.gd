@@ -91,6 +91,8 @@ func shoot() -> void: # Проблема со scale.y
 		audio_stream_player.finished.connect(audio_stream_player.queue_free)
 		audio_stream_player.play()
 	
+	@warning_ignore_start("incompatible_ternary")
+	
 	if data.shoot_particles:
 		var particles = data.shoot_particles.instantiate()
 		
@@ -119,6 +121,8 @@ func shoot() -> void: # Проблема со scale.y
 		
 		particles.global_position = global_position
 		particles.rotation = 0 if scale.x > 0 else PI
+	
+	@warning_ignore_restore("incompatible_ternary")
 	
 	if data.ammo_data.casing_sound:
 		var audio_stream_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
