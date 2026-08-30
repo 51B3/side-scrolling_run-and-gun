@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bwf25ddkxcty5"]
 
+[ext_resource type="Script" uid="uid://b8h8i4lhq74dq" path="res://scripts/UI/main_menu.gd" id="1_qwnig"]
+
 [node name="main_menu" type="Control" unique_id=1862028892]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qwnig")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1884998466]
 layout_mode = 1
@@ -23,4 +26,11 @@ layout_mode = 2
 layout_mode = 2
 text = "PLAY"
 
+[node name="quit_button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=395216368]
+layout_mode = 2
+text = "QUIT"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=256876193]
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/play_button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]

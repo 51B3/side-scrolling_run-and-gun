@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Side-Scrolling Run-and-Gun"
-run/main_scene="uid://h56r0lj4phay"
+run/main_scene="uid://bwf25ddkxcty5"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*uid://r5o5bvshwe40"
+SceneManager="*uid://clnmcvvh8wuke"
 
 [display]
 

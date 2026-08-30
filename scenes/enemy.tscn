@@ -60,6 +60,8 @@ offset_bottom = 23.0
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_qhqgy")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=666138849]
+
 [node name="health_component" type="Node" parent="." unique_id=551584923]
 unique_name_in_owner = true
 script = ExtResource("3_xepks")

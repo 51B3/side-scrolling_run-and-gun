@@ -7,6 +7,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(128, 128)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktgr7"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnjht"]
+bg_color = Color(1, 0, 0, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(128, 128)
 
@@ -19,6 +25,27 @@ shape = SubResource("RectangleShape2D_g2els")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1234813215]
 texture = ExtResource("1_mhefn")
 
+[node name="health" type="Control" parent="." unique_id=859202350]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="health" unique_id=1663246635]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -96.0
+offset_right = 64.0
+offset_bottom = -80.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ktgr7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jnjht")
+show_percentage = false
+
+[node name="Label" type="Label" parent="health" unique_id=1856882831]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="hint" type="Label" parent="." unique_id=1352084630]
 offset_right = 40.0
 offset_bottom = 23.0
@@ -27,6 +54,8 @@ offset_bottom = 23.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area" unique_id=1681687780]
 shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=921689546]
 
 [node name="health_component" type="Node" parent="." unique_id=1926655575]
 unique_name_in_owner = true

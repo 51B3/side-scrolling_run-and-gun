@@ -8,16 +8,16 @@ extends CanvasLayer
 	.get_node("player")
 )
 # Перенести в player.gd
-@onready var ammo_bar:         ProgressBar = $header/VBoxContainer/ammo/HBoxContainer/ProgressBar
-@onready var ammo_label:       Label = $header/VBoxContainer/ammo/HBoxContainer/Label
-@onready var health_bar:       ProgressBar = $header/VBoxContainer/health/ProgressBar
+@onready var ammo_bar:         ProgressBar = $HUD/VBoxContainer/ammo/HBoxContainer/ProgressBar
+@onready var ammo_label:       Label = $HUD/VBoxContainer/ammo/HBoxContainer/Label
+@onready var health_bar:       ProgressBar = $HUD/VBoxContainer/health/ProgressBar
 @onready var health_component: Node = player.get_node("health_component")
 
 
 func _ready() -> void:
 	await get_tree().process_frame
 	
-	var ranged_weapon = player.get_node("ranged_weapon")
+	var ranged_weapon = player.get_node("weapons/ranged")
 	
 	if not ranged_weapon.visible:
 		ammo_bar.hide()

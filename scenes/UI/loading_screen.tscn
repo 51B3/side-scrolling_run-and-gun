@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bl71188g8v78n"]
 
+[ext_resource type="Script" uid="uid://bglgi6mgsto5p" path="res://scripts/UI/loading_screen.gd" id="1_35dpi"]
+
 [node name="loading_screen" type="Control" unique_id=1977955453]
 layout_mode = 3
 anchors_preset = 15
@@ -7,8 +9,34 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_35dpi")
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=856094963]
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1401940584]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1085090455]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer" unique_id=856094963]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+show_percentage = false
+
+[node name="progress_label" type="Label" parent="VBoxContainer" unique_id=1483148978]
+layout_mode = 2
+
+[node name="status_label" type="Label" parent="VBoxContainer" unique_id=322969287]
+layout_mode = 2
+
+[node name="tip_label" type="Label" parent="VBoxContainer" unique_id=156915372]
+layout_mode = 2
+
+[node name="loading_timer" type="Timer" parent="." unique_id=1470130478]
+wait_time = 0.1
+
+[node name="tip_timer" type="Timer" parent="." unique_id=1305957124]
+wait_time = 5.0

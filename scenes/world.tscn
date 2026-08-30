@@ -60,74 +60,6 @@ metadata/_custom_type_script = "uid://dth01u8tvhknh"
 process_mode = 3
 script = ExtResource("1_71j4m")
 
-[node name="header" type="Control" parent="CanvasLayer" unique_id=767993684]
-layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-size_flags_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/header" unique_id=81886516]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 54.0
-grow_horizontal = 2
-theme_override_constants/separation = 0
-
-[node name="progress" type="Control" parent="CanvasLayer/header/VBoxContainer" unique_id=1648299664]
-custom_minimum_size = Vector2(0, 27)
-layout_mode = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/header/VBoxContainer/progress" unique_id=1956783868]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 27.0
-grow_horizontal = 2
-
-[node name="health" type="Control" parent="CanvasLayer/header/VBoxContainer" unique_id=601657294]
-custom_minimum_size = Vector2(0, 27)
-layout_mode = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/header/VBoxContainer/health" unique_id=1263271441]
-layout_mode = 0
-offset_right = 480.0
-offset_bottom = 27.0
-theme_override_styles/background = SubResource("StyleBoxFlat_4mrxx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_7r4gi")
-value = 100.0
-show_percentage = false
-
-[node name="ammo" type="Control" parent="CanvasLayer/header/VBoxContainer" unique_id=1701290714]
-custom_minimum_size = Vector2(0, 27)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/header/VBoxContainer/ammo" unique_id=620507521]
-layout_mode = 0
-offset_right = 480.0
-offset_bottom = 27.0
-theme_override_constants/separation = 0
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/header/VBoxContainer/ammo/HBoxContainer" unique_id=318832150]
-custom_minimum_size = Vector2(390, 27)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_m7wbm")
-theme_override_styles/fill = SubResource("StyleBoxFlat_3obaf")
-show_percentage = false
-
-[node name="Label" type="Label" parent="CanvasLayer/header/VBoxContainer/ammo/HBoxContainer" unique_id=585929715]
-custom_minimum_size = Vector2(90, 27)
-layout_mode = 2
-text = "0/0"
-vertical_alignment = 1
-
-[node name="hot_bar" type="Control" parent="CanvasLayer/header/VBoxContainer" unique_id=1487676429]
-layout_mode = 2
-script = ExtResource("2_q5onr")
-
-[node name="pause_menu" parent="CanvasLayer" unique_id=523649547 instance=ExtResource("2_i7141")]
-visible = false
-
 [node name="item_drop_area" type="Control" parent="CanvasLayer" unique_id=1669606870]
 layout_mode = 3
 anchors_preset = 15
@@ -137,19 +69,95 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_4mrxx")
 
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=767993684]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD" unique_id=81886516]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="progress" type="Control" parent="CanvasLayer/HUD/VBoxContainer" unique_id=1648299664]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HUD/VBoxContainer/progress" unique_id=1956783868]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 27.0
+grow_horizontal = 2
+
+[node name="health" type="Control" parent="CanvasLayer/HUD/VBoxContainer" unique_id=601657294]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HUD/VBoxContainer/health" unique_id=1263271441]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4mrxx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7r4gi")
+value = 100.0
+show_percentage = false
+
+[node name="ammo" type="Control" parent="CanvasLayer/HUD/VBoxContainer" unique_id=1701290714]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer/ammo" unique_id=620507521]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 27.0
+theme_override_constants/separation = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HUD/VBoxContainer/ammo/HBoxContainer" unique_id=318832150]
+custom_minimum_size = Vector2(390, 27)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_m7wbm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3obaf")
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer/ammo/HBoxContainer" unique_id=585929715]
+custom_minimum_size = Vector2(90, 27)
+layout_mode = 2
+text = "0/0"
+vertical_alignment = 1
+
+[node name="hot_bar" type="Control" parent="CanvasLayer/HUD/VBoxContainer" unique_id=1487676429]
+layout_mode = 2
+script = ExtResource("2_q5onr")
+
+[node name="pause_menu" parent="CanvasLayer" unique_id=523649547 instance=ExtResource("2_i7141")]
+visible = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1484451294]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1783520777]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=1896200555]
+
 [node name="player" parent="." unique_id=1413308504 instance=ExtResource("2_qfnet")]
 position = Vector2(960, 540)
 
-[node name="ranged_weapon" parent="player" unique_id=409384861 node_paths=PackedStringArray("player") instance=ExtResource("3_i7141")]
-player = NodePath("..")
+[node name="weapons" type="Node2D" parent="player" unique_id=1671838790]
 
-[node name="melee_weapon" parent="player" unique_id=1143297907 instance=ExtResource("6_4mrxx")]
+[node name="ranged" parent="player/weapons" unique_id=409384861 node_paths=PackedStringArray("player") instance=ExtResource("3_i7141")]
+player = NodePath("../..")
+
+[node name="melee" parent="player/weapons" unique_id=1143297907 instance=ExtResource("6_4mrxx")]
 visible = false
 data = ExtResource("7_7r4gi")
 
 [node name="enemy" parent="." unique_id=971574587 instance=ExtResource("4_4mrxx")]
 material = SubResource("ShaderMaterial_q5onr")
-position = Vector2(1717, 421)
+position = Vector2(1717, 540)
 
 [node name="item" parent="." unique_id=499461930 instance=ExtResource("8_e3hyu")]
 position = Vector2(471, 540)

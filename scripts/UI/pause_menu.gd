@@ -30,8 +30,8 @@ func _on_restart_button_pressed() -> void:
 func _on_settings_button_pressed() -> void:
 	$PanelContainer.hide()
 	$settings.show()
-	pass
 
 
 func _on_main_menu_button_pressed() -> void:
-	get_tree().quit()
+	_resume()
+	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")

@@ -22,5 +22,7 @@ text = "E"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area" unique_id=994942864]
 shape = SubResource("RectangleShape2D_4gq7n")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1804629261]
+
 [connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]
