@@ -22,7 +22,7 @@ bg_color = Color(1, 0, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(144, 144)
 
-[node name="enemy" type="CharacterBody2D" unique_id=971574587 groups=["zombie"]]
+[node name="enemy" type="CharacterBody2D" unique_id=971574587 groups=["enemy"]]
 material = SubResource("ShaderMaterial_4gx57")
 script = ExtResource("2_5uy6h")
 

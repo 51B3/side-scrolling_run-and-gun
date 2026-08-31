@@ -106,7 +106,7 @@ melee_weapon={
 
 2d_render/layer_1="environment"
 2d_render/layer_2="player"
-2d_render/layer_3="zombies"
+2d_render/layer_3="enemy"
 2d_render/layer_4="items"
 2d_render/layer_5="triggers"
 2d_render/layer_6="NPC"

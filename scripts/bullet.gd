@@ -34,7 +34,7 @@ func _on_screen_exited() -> void:
 
 
 func _on_attack_area_body_entered(body: Node2D) -> void:	
-	if not body.is_in_group("zombie"):
+	if not body.is_in_group("enemy"):
 		return
 	
 	body.get_node("health_component").damage(data.damage)

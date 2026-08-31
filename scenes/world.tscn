@@ -29,7 +29,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3obaf"]
 bg_color = Color(1, 1, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5onr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dss4m"]
 resource_local_to_scene = true
 shader = ExtResource("5_7r4gi")
 shader_parameter/is_white = false
@@ -156,11 +156,12 @@ visible = false
 data = ExtResource("7_7r4gi")
 
 [node name="enemy" parent="." unique_id=971574587 instance=ExtResource("4_4mrxx")]
-material = SubResource("ShaderMaterial_q5onr")
+material = SubResource("ShaderMaterial_dss4m")
 position = Vector2(1717, 540)
 
 [node name="item" parent="." unique_id=499461930 instance=ExtResource("8_e3hyu")]
 position = Vector2(471, 540)
+stack = 30
 data = ExtResource("9_q5onr")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=518300450]

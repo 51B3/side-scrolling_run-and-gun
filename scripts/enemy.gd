@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	var direction: Vector2 = (player.global_position - global_position).normalized()
 	
 	velocity = direction * speed
-	position.y = clamp(position.y, 250, 450)
+	position.y = clamp(position.y, 180, 900)
 	
 	move_and_slide()
 	
