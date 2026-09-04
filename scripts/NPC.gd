@@ -9,6 +9,7 @@ var target_velocity: Vector2 = Vector2.ZERO
 
 func _physics_process(_delta: float) -> void:
 	velocity = target_velocity
+	position.y = clamp(position.y, 180, 900)
 	
 	move_and_slide()
 

@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="BulletData" format=3 uid="uid://bwg3qc7n80am8"]
 
 [ext_resource type="Script" uid="uid://dtd60ue4epco0" path="res://scripts/data/bullet.gd" id="1_4lmx1"]
+[ext_resource type="AudioStream" uid="uid://coab14q2nb5ff" path="res://assets/audio/SFX/weapons/ranged/hit.mp3" id="1_wwdf2"]
+[ext_resource type="PackedScene" uid="uid://cd7drgmt1esyq" path="res://scenes/particles/weapons/ranged/hit.tscn" id="1_xkds6"]
 
 [resource]
 script = ExtResource("1_4lmx1")
+hit_particles = ExtResource("1_xkds6")
+hit_sound = ExtResource("1_wwdf2")
 metadata/_custom_type_script = "uid://dtd60ue4epco0"

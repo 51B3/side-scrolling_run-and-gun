@@ -104,13 +104,11 @@ melee_weapon={
 
 [layer_names]
 
-2d_render/layer_1="environment"
 2d_render/layer_2="player"
 2d_render/layer_3="enemy"
 2d_render/layer_4="items"
 2d_render/layer_5="triggers"
 2d_render/layer_6="NPC"
-2d_render/layer_7="pushable"
 
 [physics]
 

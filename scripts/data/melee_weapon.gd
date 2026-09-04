@@ -13,6 +13,7 @@ enum DamageType {
 @export var attack_cooldown: float = 1.0
 # combo_<...>
 """
+@export_group("Design(?)") # Rename
 @export var swing_particles: PackedScene # swing_trail
 @export var swing_sound:     AudioStream
 @export var hit_particles:   PackedScene

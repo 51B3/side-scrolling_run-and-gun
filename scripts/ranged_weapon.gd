@@ -71,7 +71,7 @@ func shoot() -> void: # Проблема со scale.y
 			audio_stream_player.finished.connect(audio_stream_player.queue_free)
 			audio_stream_player.play()
 		
-		if Global.get_amount(data.ammo_data) > 0:
+		if player.get_node("%ammo_component").get_amount(data.ammo_data) > 0:
 			reload()
 		
 		return
@@ -140,7 +140,7 @@ func reload() -> void:
 	if is_reloading or magazine_ammo >= data.magazine_size:
 		return
 	
-	if Global.get_amount(data.ammo_data) <= 0:
+	if player.get_node("%ammo_component").get_amount(data.ammo_data) <= 0:
 		return
 	
 	is_reloading = true
@@ -160,12 +160,12 @@ func reload() -> void:
 	
 	var ammo_delta: int = mini(
 		data.magazine_size - magazine_ammo,
-		Global.get_amount(data.ammo_data)
+		player.get_node("%ammo_component").get_amount(data.ammo_data)
 	)
 	
 	magazine_ammo += ammo_delta
 	
-	Global.remove(data.ammo_data, ammo_delta)
+	player.get_node("%ammo_component").remove(data.ammo_data, ammo_delta)
 	
 	is_reloading = false
 	

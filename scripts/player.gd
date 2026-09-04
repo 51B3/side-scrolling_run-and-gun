@@ -10,8 +10,6 @@ var target_velocity:   Vector2 = Vector2.ZERO
 var can_interact_with: Dictionary[String, Array] = {
 	"item": [],
 	"NPC": [],
-	"chest": [],
-	"pushable": [], # (?)
 	"trigger": []
 }
 var can_attack:        Dictionary[String, Array] = {
@@ -31,10 +29,16 @@ func _process(_delta: float) -> void:
 			var item: Item = _get_closest("item", true)
 			
 			if item.data is AmmoData:
-				Global.add(item.data, item.stack) # 
+				get_node("%ammo_component").add(item.data, item.stack) # 
 			
 			can_interact_with["item"].erase(item)
 			item.queue_free()
+		
+		if can_interact_with["NPC"].size() > 0:
+			pass
+		
+		if can_interact_with["trigger"].size() > 0:
+			pass
 
 
 func _get_closest(group: String, is_interactable: bool) -> Node: # Rename
@@ -58,19 +62,31 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
-		# $AnimationPlayer.play("")
+		
+		"""
+		$AnimationPlayer.play("")
+		"""
 	
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
-		# $AnimationPlayer.play("")
+		
+		"""
+		$AnimationPlayer.play("")
+		"""
 	
 	if Input.is_action_pressed("move_down"):
 		direction.y += 1
-		# $AnimationPlayer.play("")
+		
+		"""
+		$AnimationPlayer.play("")
+		"""
 	
 	if Input.is_action_pressed("move_up"):
 		direction.y -= 1
-		# $AnimationPlayer.play("")
+		
+		"""
+		$AnimationPlayer.play("")
+		"""
 	
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()

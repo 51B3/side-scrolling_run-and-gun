@@ -2,11 +2,19 @@
 
 [ext_resource type="Resource" uid="uid://ewms7uyijuma" path="res://resources/items/ammo/test.tres" id="1_5uxfe"]
 [ext_resource type="Script" uid="uid://b8a7vyab57032" path="res://scripts/data/ranged_weapon.gd" id="1_a52rp"]
+[ext_resource type="AudioStream" uid="uid://bo08l5ts1xjxq" path="res://assets/audio/SFX/weapons/ranged/empty_chambered.mp3" id="2_iukic"]
 [ext_resource type="Texture2D" uid="uid://cxjwk23kdm1s2" path="res://icon.svg" id="3_kr246"]
+[ext_resource type="AudioStream" uid="uid://02g2nmt2rn3e" path="res://assets/audio/SFX/weapons/ranged/reload.mp3" id="3_merci"]
+[ext_resource type="PackedScene" uid="uid://b23r4c2ojyk1a" path="res://scenes/particles/weapons/ranged/shoot.tscn" id="5_merci"]
+[ext_resource type="AudioStream" uid="uid://blc0iiixg045w" path="res://assets/audio/SFX/weapons/ranged/shoot.mp3" id="5_qnrpp"]
 
 [resource]
 script = ExtResource("1_a52rp")
 ammo_data = ExtResource("1_5uxfe")
+shoot_sound = ExtResource("5_qnrpp")
+empty_chambered_sound = ExtResource("2_iukic")
+shoot_particles = ExtResource("5_merci")
+reload_sound = ExtResource("3_merci")
 texture = ExtResource("3_kr246")
 name = "test ranged weapon"
 description = "description"
