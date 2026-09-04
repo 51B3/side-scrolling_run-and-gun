@@ -6,3 +6,5 @@
 3. ranged_weapon.gd
 4. item.gd
 5. resources/
+
+Перемещать particle-эффекты (casing, hit, shoot) за соответстующими сущностями*

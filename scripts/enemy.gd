@@ -9,24 +9,16 @@ class_name Zombie
 )
 @onready var health_bar:       ProgressBar = $health/ProgressBar
 @onready var health_component: Node = $health_component
+@onready var animated_sprite:  AnimatedSprite2D = $AnimatedSprite2D
 
-@export var data: EnemyData:
-	set(value):
-		if data == value:
-			return
-		
-		data = value
-		
-		"""
-		if is_node_ready():
-			_draw()
-		"""
 @export var speed:           float = 128.0
 @export var attack_damage:   float = 10.0
 @export var attack_cooldown: float = 1.0
 
 var attack_timer: float = 0.0
 var is_attacking: bool = false
+var is_hurt:      bool = false
+var is_dead:      bool = false
 
 
 func _ready() -> void:
@@ -34,12 +26,37 @@ func _ready() -> void:
 	health_bar.value = health_component.current_health
 	
 	health_component.damaged.connect(_on_health_changed)
+	health_component.damaged.connect(
+		func(_amount: float):
+			is_hurt = true
+			
+			animated_sprite.play("hurt")
+			
+			await animated_sprite.animation_finished
+			
+			is_hurt = false
+	)
+	health_component.died.connect(
+		func():
+			is_dead = true
+			
+			animated_sprite.play("death")
+			
+			await animated_sprite.animation_finished
+			
+			queue_free()
+	)
 	health_component.healed.connect(_on_health_changed)
 
 
 func _physics_process(delta: float) -> void:
-	if not player:
+	if not player or \
+	is_hurt or\
+	is_dead:
 		return
+	
+	if not is_attacking:
+		animated_sprite.play("walk")
 	
 	var direction: Vector2 = (player.global_position - global_position).normalized()
 	
@@ -64,6 +81,7 @@ func _on_health_changed(_amount: float) -> void:
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.get_node("health_component").damage(attack_damage)
+		animated_sprite.play("attack")
 		
 		is_attacking = true
 		attack_timer = attack_cooldown

@@ -84,4 +84,6 @@ func die() -> void:
 	if parent:
 		died.emit()
 		
+		"""
 		parent.queue_free()
+		"""

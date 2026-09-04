@@ -40,12 +40,17 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 	body.get_node("health_component").damage(data.damage)
 	
 	if data.hit_particles:
-		var particles = data.hit_particles.instantiate()
+		var particles_instance = data.hit_particles.instantiate()
 		
-		get_tree().current_scene.add_child(particles)
+		get_tree().current_scene.add_child(particles_instance)
 		
-		particles.global_position = global_position
-		particles.rotation = rotation
+		@warning_ignore_start("incompatible_ternary")
+		
+		particles_instance.global_position = global_position
+		particles_instance.rotation = 0 if scale.x > 0 else PI
+		particles_instance.get_node("CPUParticles2D").emitting = true
+		
+		@warning_ignore_restore("incompatible_ternary")
 	
 	if data.hit_sound:
 		var audio_stream_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()

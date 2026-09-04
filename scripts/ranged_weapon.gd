@@ -94,12 +94,13 @@ func shoot() -> void: # Проблема со scale.y
 	@warning_ignore_start("incompatible_ternary")
 	
 	if data.shoot_particles:
-		var particles = data.shoot_particles.instantiate()
+		var particles_instance = data.shoot_particles.instantiate()
 		
-		get_tree().current_scene.add_child(particles)
+		get_tree().current_scene.add_child(particles_instance)
 		
-		particles.global_position = global_position
-		particles.rotation = 0 if scale.x > 0 else PI
+		particles_instance.global_position = global_position
+		particles_instance.rotation = 0 if scale.x > 0 else PI
+		particles_instance.get_node("CPUParticles2D").emitting = true
 	
 	var bullet_instance = bullet_scene.instantiate()
 	
@@ -115,12 +116,13 @@ func shoot() -> void: # Проблема со scale.y
 	bullet_instance.rotation = 0 if scale.x > 0 else PI
 	
 	if data.ammo_data.casing_particle:
-		var particles = data.ammo_data.casing_particle.instantiate()
+		var particles_instance = data.ammo_data.casing_particle.instantiate()
 		
-		get_tree().current_scene.add_child(particles)
+		get_tree().current_scene.add_child(particles_instance)
 		
-		particles.global_position = global_position
-		particles.rotation = 0 if scale.x > 0 else PI
+		particles_instance.global_position = global_position
+		particles_instance.rotation = 0 if scale.x > 0 else PI
+		particles_instance.get_node("CPUParticles2D").emitting = true
 	
 	@warning_ignore_restore("incompatible_ternary")
 	
